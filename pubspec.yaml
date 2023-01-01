@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
   flutter_vector_icons: ^1.0.0
+  smooth_page_indicator: ^1.0.0
   get: ^4.6.1
   google_fonts: ^3.0.1
 

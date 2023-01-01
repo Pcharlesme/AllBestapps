@@ -49,7 +49,7 @@ class DaysGridView extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GestureDetector(
           onTap: () {
-            Navigator.pushReplacementNamed(context, Routes.day1Route);
+            Navigator.pushReplacementNamed(context, Routes.day2Route);
           },
           child: Container(
             color: Colors.blue.shade700,
