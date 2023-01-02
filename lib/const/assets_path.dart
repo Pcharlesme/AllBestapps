@@ -13,6 +13,11 @@ final String day1four = _getImagePath("images/four.jpg");
 final String onboard = _getImagePath("images/box.png");
 final String onboard1 = _getImagePath("images/box2.png");
 final String onboard2 = _getImagePath("images/box3.png");
+final String grocy = _getImagePath("images/chicken.png");
+final String grocy1 = _getImagePath("images/banana.png");
+final String grocy2 = _getImagePath("images/avacado.png");
+final String grocy3 = _getImagePath("images/water.png");
+final String grocshop = _getImagePath("images/shop.jpg");
 
 //lottie assetsPath
 final String success = _getImagePath("lottie/success.json");

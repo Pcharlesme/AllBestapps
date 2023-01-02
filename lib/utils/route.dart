@@ -3,6 +3,7 @@ import 'package:testappbc/const/strings.dart';
 import 'package:testappbc/main/homescreen.dart';
 import 'package:testappbc/main/splash.dart';
 import 'package:testappbc/views/day1/appscreen1.dart';
+import 'package:testappbc/views/day3/homeview.dart';
 
 import '../views/day2/homeview2.dart';
 
@@ -11,6 +12,7 @@ class Routes {
   static const String homeRoute = "/homescreen";
   static const String day1Route = "/Day1screen";
   static const String day2Route = "/Day2screen";
+  static const String day3Route = "/Day3screen";
 }
 
 class RoutesGenarator {
@@ -25,6 +27,8 @@ class RoutesGenarator {
       case Routes.day2Route:
         return MaterialPageRoute(
             builder: ((context) => const Day2OnboardView()));
+      case Routes.day3Route:
+        return MaterialPageRoute(builder: ((context) => const GroceryHome3()));
 
       default:
         return undefinedRoute();

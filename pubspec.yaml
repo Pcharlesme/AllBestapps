@@ -41,6 +41,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0
   get: ^4.6.1
   google_fonts: ^3.0.1
+  provider:
 
 dev_dependencies:
   flutter_test:
