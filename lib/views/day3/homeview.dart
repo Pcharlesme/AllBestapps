@@ -10,6 +10,16 @@ class GroceryHome3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) {
+            return CartDetails();
+          }));
+        },
+        backgroundColor: Colors.black,
+        child: Icon(Icons.shopping_bag),
+      ),
       body: SafeArea(
         child: LayoutBuilder(builder: (context, constraint) {
           return Column(
@@ -47,15 +57,21 @@ class GroceryHome3 extends StatelessWidget {
               Expanded(
                   child: Consumer<CartModel>(
                 builder: ((context, value, child) => GridView.builder(
-                      itemCount: value.shopitem.lenght,
+                      itemCount: 4,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        childAspectRatio: 1 / 1.3,
+                      ),
                       itemBuilder: (context, index) => GridProduct(
                         color: value.shopitem[index][3],
                         imagepath: value.shopitem[index][2],
                         itemprice: value.shopitem[index][1],
                         itemname: value.shopitem[index][0],
+                        press: () {
+                          Provider.of<CartModel>(context, listen: false)
+                              .addItemToCart(index);
+                        },
                       ),
                     )),
               ))
@@ -67,32 +83,175 @@ class GroceryHome3 extends StatelessWidget {
   }
 }
 
+//CART DETAILS
+
+class CartDetails extends StatelessWidget {
+  const CartDetails({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("My Cart")),
+      body: Consumer<CartModel>(
+        builder: (context, value, child) {
+          return Column(
+            children: [
+              //list of items
+
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: ((context, index) => Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: ListTile(
+                              leading: Image.asset(
+                                value.cartItems[index][2],
+                                height: 38,
+                              ),
+                              title: Text(value.cartItems[index][0]),
+                              subtitle: Text(value.cartItems[index][1]),
+                              trailing: IconButton(
+                                icon: Icon(Icons.cancel),
+                                onPressed: () {
+                                  Provider.of<CartModel>(context, listen: false)
+                                      .removeItemFromCart(index);
+                                },
+                              )),
+                        ),
+                      )),
+                ),
+              ),
+              //total price
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.green.shade300,
+                    borderRadius: BorderRadius.circular(8)),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            "Total Price",
+                            style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                              fontSize: 14,
+                            )),
+                          ),
+                          Text(
+                            "\$" + value.calculateTotal(),
+                            style: GoogleFonts.poppins(
+                                textStyle: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                          )
+                        ],
+                      ),
+
+                      //pay now
+
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.green.shade100)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Text(
+                                "Pay Now",
+                                style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios,
+                                size: 16,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+//GRID PRODUCT
 class GridProduct extends StatelessWidget {
   final String itemname;
   final String itemprice;
   final Color color;
+  void Function()? press;
   final String imagepath;
-  const GridProduct({
+  GridProduct({
     Key? key,
     required this.itemname,
     required this.itemprice,
     required this.color,
     required this.imagepath,
+    required this.press,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color,
-      ),
-      child: Column(
-        children: [
-          Image.asset(
-            imagepath,
-            height: 64,
+    return Padding(
+      padding: EdgeInsets.all(12.0),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: color.withOpacity(0.9),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                imagepath,
+                height: 84,
+              ),
+
+              //text item
+
+              Text(itemname),
+
+              //price button
+
+              MaterialButton(
+                onPressed: press,
+                color: color,
+                child: Text(
+                  "\$" + itemprice,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
