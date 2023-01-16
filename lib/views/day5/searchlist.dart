@@ -161,7 +161,7 @@ class _HomePageState extends State<HomePage> {
             child: AnimatedContainer(
                 height: 35,
                 width: 110,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 decoration: BoxDecoration(
                     color: user.isFollowedByMe
                         ? Colors.blue[700]
