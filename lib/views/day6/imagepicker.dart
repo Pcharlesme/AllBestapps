@@ -25,7 +25,7 @@ class _ImagePickerAppState extends State<ImagePickerApp> {
 
       final imagePermanent = await saveFilePermanently(image.path);
       setState(() {
-        this._image = imagePermanent;
+        _image = imagePermanent;
       });
     } on PlatformException catch (e) {
       print("failed to pick image: $e");
@@ -50,7 +50,7 @@ class _ImagePickerAppState extends State<ImagePickerApp> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           _image != null
@@ -64,7 +64,7 @@ class _ImagePickerAppState extends State<ImagePickerApp> {
                   splashlogo,
                   height: 200,
                 ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           CustomButton(
@@ -112,7 +112,7 @@ class CustomButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(icons),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               ),
               Text(title),

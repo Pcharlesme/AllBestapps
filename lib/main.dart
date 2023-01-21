@@ -4,8 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:testappbc/utils/route.dart';
 import 'package:testappbc/utils/size_config.dart';
 import 'package:testappbc/views/day3/cart_model.dart';
-import 'package:testappbc/views/day5/searchlist.dart';
-import 'package:testappbc/views/day6/imagepicker.dart';
+import 'package:testappbc/views/day7/http.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,8 +30,9 @@ class MyApp extends StatelessWidget {
           child: const GetMaterialApp(
             onGenerateRoute: RoutesGenarator.getRoute,
             debugShowCheckedModeBanner: false,
+            home: HttpApi(),
 
-            initialRoute: Routes.splashRoute,
+            // initialRoute: Routes.splashRoute,
             // getPages: AppPages.routes,
           ),
         );
