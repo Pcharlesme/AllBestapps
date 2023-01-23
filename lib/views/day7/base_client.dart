@@ -7,19 +7,19 @@ const String baseUrl = 'https://631c37911b470e0e12fcdd0b.mockapi.io/api';
 class BaseClient {
   var client = http.Client();
 
-//GET
+  //GET
   Future<dynamic> get(String api) async {
     var url = Uri.parse(baseUrl + api);
-    var header = {
+    var headers = {
       'Authorization': 'Bearer sfie328370428387=',
       'api_key': 'ief873fj38uf38uf83u839898989',
     };
 
-    var response = await client.get(url);
+    var response = await client.get(url, headers: headers);
     if (response.statusCode == 200) {
       return response.body;
     } else {
-      //throw error
+      //throw exception and catch it in UI
     }
   }
 

@@ -46,7 +46,8 @@ class _HttpApiState extends State<HttpApi> {
               var response =
                   await BaseClient().post('/users', user).catchError((err) {});
               if (response == null) return;
-              debugPrint('successful:');
+
+              debugPrint('Great:');
             },
             text: 'POST',
             textcolor: const Color.fromARGB(255, 89, 8, 240),
@@ -54,17 +55,15 @@ class _HttpApiState extends State<HttpApi> {
           AppButton(
             description: 'Edit User',
             press: () async {
-              var id = 2;
               var user = User(
                 name: 'Afzal Ali',
                 qualifications: [
-                  Qualification(degree: 'Ph.D', completionData: '01-01-2028'),
+                  Qualification(degree: 'Master', completionData: '01-01-2025'),
                 ],
               );
 
-              var response = await BaseClient()
-                  .put('/users/$id', user)
-                  .catchError((err) {});
+              var response =
+                  await BaseClient().post('/users', user).catchError((err) {});
               if (response == null) return;
               debugPrint('successful:');
             },
@@ -78,7 +77,7 @@ class _HttpApiState extends State<HttpApi> {
               var response =
                   await BaseClient().delete('/users/$id').catchError((err) {});
               if (response == null) return;
-              debugPrint('successful:');
+              debugPrint('succjessful:');
             },
             text: 'DEL',
             textcolor: const Color.fromARGB(255, 115, 2, 60),
