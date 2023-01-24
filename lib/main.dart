@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:testappbc/utils/route.dart';
 import 'package:testappbc/utils/size_config.dart';
 import 'package:testappbc/views/day3/cart_model.dart';
-import 'package:testappbc/views/day7/http.dart';
+import 'package:testappbc/views/day8/mainaoi.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           child: const GetMaterialApp(
             onGenerateRoute: RoutesGenarator.getRoute,
             debugShowCheckedModeBanner: false,
-            home: HttpApi(),
+            home: HomePageDay8(),
 
             // initialRoute: Routes.splashRoute,
             // getPages: AppPages.routes,
