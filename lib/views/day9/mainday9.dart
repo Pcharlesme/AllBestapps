@@ -43,8 +43,9 @@ class ShopX extends StatelessWidget {
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2),
-                      itemBuilder: (context, index) =>
-                          ProductTile(productController.productList[index])),
+                      itemBuilder: (context, index) => ProductBox(
+                            product: productController.productList[index],
+                          )),
                 )))
           ],
         ),
