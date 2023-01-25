@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
               currentFocus.focusedChild!.unfocus();
             }
           },
-          child: const GetMaterialApp(
+          child: GetMaterialApp(
             onGenerateRoute: RoutesGenarator.getRoute,
             debugShowCheckedModeBanner: false,
             home: ShopX(),

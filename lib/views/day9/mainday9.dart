@@ -1,27 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:testappbc/views/day9/product_controller.dart';
+import 'package:testappbc/views/day9/product_tile.dart';
 
-import '../../utils/route.dart';
+class ShopX extends StatelessWidget {
+  final ProductController productController = Get.put(ProductController());
+  ShopX({super.key});
 
-class ShopX extends StatefulWidget {
-  const ShopX({super.key});
-
-  @override
-  State<ShopX> createState() => _ShopXState();
-}
-
-class _ShopXState extends State<ShopX> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           elevation: 0,
           leading: const Icon(Icons.arrow_back),
-          actions: const [Icon(Icons.shop)],
+          actions: const [Icon(Icons.shop_2)],
         ),
         body: Column(
           children: [
@@ -42,25 +36,16 @@ class _ShopXState extends State<ShopX> {
             const SizedBox(
               height: 16,
             ),
-            GridView.builder(
-              itemCount: 30,
-              scrollDirection: Axis.vertical,
-              physics: const ScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3),
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacementNamed(context, Routes.day3Route);
-                  },
-                  child: Container(
-                    color: Colors.blue.shade700,
-                    child: const Center(child: Text("Day 1")),
-                  ),
-                ),
-              ),
-            )
+            Obx((() => Expanded(
+                  child: GridView.builder(
+                      itemCount: productController.productList.length,
+                      scrollDirection: Axis.vertical,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemBuilder: (context, index) =>
+                          ProductTile(productController.productList[index])),
+                )))
           ],
         ),
       ),
