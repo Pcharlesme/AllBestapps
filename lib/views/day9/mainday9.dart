@@ -28,7 +28,9 @@ class ShopX extends StatelessWidget {
                   ),
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showMessage(context, "This is a sample message.");
+                    },
                     icon: const Icon(Icons.view_list_rounded)),
                 IconButton(onPressed: () {}, icon: const Icon(Icons.grid_view))
               ],
@@ -52,4 +54,24 @@ class ShopX extends StatelessWidget {
       ),
     );
   }
+}
+
+void showMessage(BuildContext context, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Message'),
+        content: Text(message),
+        actions: <Widget>[
+          MaterialButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      );
+    },
+  );
 }

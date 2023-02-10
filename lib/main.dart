@@ -3,8 +3,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:provider/provider.dart';
 import 'package:testappbc/utils/route.dart';
 import 'package:testappbc/utils/size_config.dart';
-import 'package:testappbc/views/day10/location.dart';
 import 'package:testappbc/views/day3/cart_model.dart';
+import 'package:testappbc/views/day9/mainday9.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           child: GetMaterialApp(
             onGenerateRoute: RoutesGenarator.getRoute,
             debugShowCheckedModeBanner: false,
-            home: LocationDisplay(),
+            home: ShopX(),
 
             // initialRoute: Routes.splashRoute,
             // getPages: AppPages.routes,
